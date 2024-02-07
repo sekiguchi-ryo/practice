@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  root "static_pages#home"
   get  "static_pages/home"
   get  "static_pages/help"
-  root "static_pages#home"
+  get  "/signup", to: "users#new"
 end
