@@ -75,3 +75,4 @@ end
 
 gem "tailwindcss-rails", "~> 2.3"
 gem "bcrypt",          "3.1.18"
+gem "devise"
