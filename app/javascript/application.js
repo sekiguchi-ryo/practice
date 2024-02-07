@@ -5,9 +5,9 @@ import "custom/check"
 import jQuery from "jquery"
 window.$ = window.jQuery = jQuery
 import("jquery-ui-dist")
-$(function(){
-    alert("jQuery動いた")
-})
+// $(function(){
+//     alert("jQuery動いた")
+// })
 $(async() => {
     await import("jquery-ui-dist")
     $("#hoge").draggable()
