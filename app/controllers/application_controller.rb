@@ -7,7 +7,13 @@ class ApplicationController < ActionController::Base
         devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :avatar])
     end
 
-    # def hello
-    #     render html: "hello, world!"
-    # end
+    def after_sign_in_path_for(resource)
+        flash[:notice] = "ログインに成功しました" 
+        manage_index_path
+    end
+
+    def after_sign_out_path_for(resource)
+        flash[:notice] = "ログアウトしました"
+        new_user_session_path
+    end
 end
