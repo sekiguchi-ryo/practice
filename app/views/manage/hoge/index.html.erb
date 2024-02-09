@@ -11,7 +11,8 @@
     </div>
 </aside>
 
-<div class="p-4 sm:ml-64">
+<div class="p-4 ml-64">
+   <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
 </div>
 
 <!--
