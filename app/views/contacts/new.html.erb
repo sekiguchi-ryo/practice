@@ -1,0 +1,43 @@
+<div class="w-full h-screen flex items-center justify-center">
+  <div class="w-full max-w-xl">
+    <div class="bg-gray-100 py-10 px-8 rounded">
+      <%= form_with(model: @contact, url: confirm_contacts_path, data: { turbo: false }) do |f| %>
+        <div class="mb-4">
+          <div class="mb-2">
+            <%= f.label :name, "お名前", class:"block font-bold text-sm" %>
+          </div>
+          <div class="">
+            <%= f.text_field :name, autofocus: true, class:"w-full bg-white py-3 px-4 rounded" %>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="mb-2">
+            <%= f.label :email, "メールアドレス", class:"block font-bold text-sm" %>
+          </div>
+          <div class="">
+            <%= f.email_field :email, autocomplete: "email", placeholder: "hoge@example.com", class:"w-full bg-white py-3 px-4 rounded" %>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="mb-2">
+            <%= f.label :subject, "件名", class:"block font-bold text-sm" %>
+          </div>
+          <div class="">
+            <%= f.text_field :subject, class:"w-full bg-white py-3 px-4 rounded" %>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="mb-2">
+            <%= f.label :message, "メッセージ", class:"block font-bold text-sm" %>
+          </div>
+          <div class="">
+            <%= f.text_area :message, class:"w-full bg-white py-3 px-4 rounded" %>
+          </div>
+        </div>
+        <div class="text-center">
+            <%= f.submit "入力内容確認", class:"w-full bg-gray-800 text-white py-3 px-4 rounded cursor-pointer font-bold" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

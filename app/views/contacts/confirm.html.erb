@@ -1,0 +1,56 @@
+<div class="w-full h-screen flex items-center justify-center">
+  <div class="w-full max-w-xl">
+    <div class="bg-gray-100 py-10 px-8 rounded">
+      <div class="mb-4">
+        <div class="mb-2">
+          <%= label_tag :name, "お名前", class:"block font-bold text-sm" %>
+        </div>
+        <div class="">
+          <%= text_field_tag :name, @contact.name, disabled: true, class:"w-full bg-white py-3 px-4 rounded disabled:bg-slate-50 disabled:text-slate-500" %>
+        </div>
+      </div>
+      <div class="mb-4">
+        <div class="mb-2">
+          <%= label_tag :email, "メールアドレス", class:"block font-bold text-sm" %>
+        </div>
+        <div class="">
+          <%= email_field_tag :email, @contact.email, disabled: true, class:"w-full bg-white py-3 px-4 rounded disabled:bg-slate-50 disabled:text-slate-500" %>
+        </div>
+      </div>
+      <div class="mb-4">
+        <div class="mb-2">
+          <%= label_tag :subject, "件名", class:"block font-bold text-sm" %>
+        </div>
+        <div class="">
+          <%= text_field_tag :subject, @contact.subject, disabled: true, class:"w-full bg-white py-3 px-4 rounded disabled:bg-slate-50 disabled:text-slate-500" %>
+        </div>
+      </div>
+      <div class="mb-4">
+        <div class="mb-2">
+          <%= label_tag :message, "メッセージ", class:"block font-bold text-sm" %>
+        </div>
+        <div class="">
+          <%= text_area_tag :message, @contact.message, disabled: true, class:"w-full bg-white py-3 px-4 rounded disabled:bg-slate-50 disabled:text-slate-500" %>
+        </div>
+      </div>
+      <div class="text-center mb-4">
+          <%= form_with(model: @contact, data: { turbo: false }) do |f| %>
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :email %>
+            <%= f.hidden_field :subject %>
+            <%= f.hidden_field :message %>
+            <%= f.submit "送信", class:"w-full bg-gray-800 text-white py-3 px-4 rounded cursor-pointer font-bold" %>
+          <% end %>
+      </div>
+      <div class="text-center">
+        <%= form_with(model: @contact, url: back_contacts_path, data: { turbo: false }) do |f| %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :email %>
+          <%= f.hidden_field :subject %>
+          <%= f.hidden_field :message %>
+          <%= f.submit "入力画面に戻る", class:"w-full bg-white py-3 px-4 rounded cursor-pointer font-bold border border-gray-500" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

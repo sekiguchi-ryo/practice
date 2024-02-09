@@ -6,6 +6,14 @@ Rails.application.routes.draw do
   
   get  "manage/index", to: 'manage/hoge#index'
 
+  resources :contacts, only: [:new, :create] do
+    collection do
+      post 'confirm'
+      post 'back'
+      get 'done'
+    end
+  end
+
   # Defines the root path route ("/")
   # root "articles#index"
   # root "static_pages#home"
