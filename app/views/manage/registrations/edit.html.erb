@@ -3,47 +3,68 @@
 
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 -->
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<h1 class="text-lg bold mb-2">ユーザー情報変更</h1>
+<div class="max-w-xl">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="mb-4">
+      <div class="mb-2">
+        <%= f.label :name, "名前", class:"block font-bold text-sm" %>
+      </div>
+      <div class="">
+        <%= f.text_field :name, autofocus: true, class:"w-full bg-white py-3 px-4 rounded"  %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :name, "名前" %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+    <div class="mb-4">
+      <div class="mb-2">
+        <%= f.label :email, "メールアドレス", class:"block font-bold text-sm" %>
+      </div>
+      <div class="">
+        <%= f.email_field :email, autocomplete: "email", class:"w-full bg-white py-3 px-4 rounded" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password, "パスワード" %> <i>(何も変更を加えたくない場合は、空白のままにしてください)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em>最低<%= @minimum_password_length %>文字のパスワードが必要です</em>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "パスワード(確認)" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="mb-4">
+      <div class="mb-2">
+        <%= f.label :password, "パスワード", class:"block font-bold text-sm" %> <i class="text-sm">(何も変更を加えたくない場合は、空白のままにしてください)</i>
+      </div>
+      <div class="">
+        <%= f.password_field :password, autocomplete: "new-password", class:"w-full bg-white py-3 px-4 rounded" %>
+        <% if @minimum_password_length %>
+          <br />
+          <em class="text-sm">最低<%= @minimum_password_length %>文字のパスワードが必要です</em>
+        <% end %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :current_password, "現在のパスワード" %> <i>(変更を確認するために、現在のパスワードが必要です)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+    <div class="mb-4">
+      <div class="mb-2">
+        <%= f.label :password_confirmation, "パスワード(確認)", class:"block font-bold text-sm" %>
+      </div>
+      <div class="">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"w-full bg-white py-3 px-4 rounded" %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "更新" %>
-  </div>
-<% end %>
+    <div class="mb-4">
+      <div class="mb-2">
+        <%= f.label :current_password, "現在のパスワード", class:"block font-bold text-sm" %> <i class="text-sm">(変更を確認するために、現在のパスワードが必要です)</i><br />
+      </div>
+      <div class="">
+        <%= f.password_field :current_password, autocomplete: "current-password", class:"w-full bg-white py-3 px-4 rounded" %>
+      </div>
+    </div>
 
+    <div class="actions text-center">
+      <%= f.submit "更新", class:"w-full bg-gray-800 text-white py-3 px-4 rounded cursor-pointer font-bold" %>
+    </div>
+  <% end %>
+</div>
 <!-- 
 <h3>アカウントの削除</h3>
 

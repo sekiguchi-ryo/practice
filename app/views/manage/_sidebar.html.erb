@@ -4,7 +4,7 @@
         <%= link_to current_user.name, manage_index_path, class:"flex items-center ps-2.5 mb-5"%>
         <ul class="space-y-2 font-medium">
             <li>
-              <%= link_to "プロフィール変更", edit_user_registration_path %>
+              <%= link_to "ユーザー情報変更", edit_user_registration_path %>
             </li>
             <% if current_user.admin %>
               <li>
@@ -15,6 +15,7 @@
               <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
             </li>
         </ul>
+        <p class="py-4">remote_ip:<%= request.remote_ip %></p>
       </div>
   </aside>
 </div>
