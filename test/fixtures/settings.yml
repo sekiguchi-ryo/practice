@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mode: false
+  api: 1
+  ip_black_list: MyText
+  ip_white_list: MyText
+  contact_email_address: MyString
+
+two:
+  mode: false
+  api: 1
+  ip_black_list: MyText
+  ip_white_list: MyText
+  contact_email_address: MyString

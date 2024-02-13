@@ -1,0 +1,44 @@
+<h1>setting_page</h1>
+<p><%= @setting.mode %></p>
+<p><%= @setting.api %></p>
+<p><%= @setting.ip_black_list %></p>
+<p><%= @setting.ip_white_list %></p>
+<p><%= @setting.contact_email_address %></p>
+
+<div class="">
+    <%= form_with(model: @setting, url: manage_setting_edit_path, data: { turbo: false }) do |f| %>
+        <div class="">
+            <%= f.label :mode, "メンテナンスモード" %>
+        </div>
+        <div class="">
+            <%= f.select :mode, [["ON", true], ["OFF", false]] %>
+        </div>
+        <div class="">
+            <%= f.label :api, "API制限" %>
+        </div>
+        <div class="">
+            <%= f.text_field :api %>
+        </div>
+        <div class="">
+            <%= f.label :ip_black_list, "ユーザーアクセスIPブラックリスト" %>
+        </div>
+        <div class="">
+            <%= f.text_area :ip_black_list %>
+        </div>
+        <div class="">
+            <%= f.label :ip_white_list, "管理画面ログインIPホワイトリスト" %>
+        </div>
+        <div class="">
+            <%= f.text_area :ip_white_list %>
+        </div>
+        <div class="">
+            <%= f.label :contact_email_address, "お問合せ先メールアドレス" %>
+        </div>
+        <div class="">
+            <%= f.text_field :contact_email_address %>
+        </div>
+        <div class="">
+            <%= f.submit "設定" %>
+        </div>
+    <% end %>
+</div>

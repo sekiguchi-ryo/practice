@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   root "home#index"
   
-  get  "manage/index", to: 'manage/hoge#index'
+  get  "manage/index", to: "manage/hoge#index"
+
+  get  "manage/setting/index", to: 'manage/setting#index'
+
+  patch "manage/setting/edit", to: "manage/setting#edit"
 
   resources :contacts, only: [:new, :create] do
     collection do
