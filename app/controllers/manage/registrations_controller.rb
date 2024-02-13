@@ -1,6 +1,8 @@
 class Manage::RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_user!
 
+  layout 'manage'
+
   def edit
     @user = current_user
   end
