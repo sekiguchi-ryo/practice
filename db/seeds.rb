@@ -3,6 +3,8 @@
 #              email: "example@railstutorial.org",
 #              password:   "foobar")
 
+User.create!(name: "Admin", email: "admin@example.com", password: "admin1234", admin: true)
+
 User.create!(name: "sekiguchi", email: "sekiguchi@example.com", password: "test1234")
 
 User.create!(name: "test", email: "test@example.com", password: "test1234")
