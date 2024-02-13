@@ -13,6 +13,9 @@
 
 <div class="p-4 ml-64">
    <div>
+      <p>remote_ip:<%= request.remote_ip %></p>
+   </div>
+   <div>
       <%= link_to "プロフィール変更", edit_user_registration_path %>
    </div>
    <% if current_user.admin %>
