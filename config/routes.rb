@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  devise_for :users, path: 'manage', controllers: { sessions: 'manage/sessions' }
+  # devise_for :users, path: 'manage', controllers: { sessions: 'manage/sessions'}
+  devise_for :users, path: 'manage', controllers: { sessions: 'manage/sessions',
+                                                    registrations: 'manage/registrations'}
 
   root "home#index"
-  
   get  "manage/index", to: "manage/hoge#index"
-
   get  "manage/setting/index", to: 'manage/setting#index'
-
   patch "manage/setting/edit", to: "manage/setting#edit"
 
   resources :contacts, only: [:new, :create] do

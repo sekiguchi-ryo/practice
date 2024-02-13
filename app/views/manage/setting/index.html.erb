@@ -1,4 +1,5 @@
 <h1>setting_page</h1>
+<!-- 
 <p><%= current_user.name %></p>
 <p><%= current_user.admin %></p>
 <p><%= @setting.mode %></p>
@@ -6,6 +7,7 @@
 <p><%= @setting.ip_black_list %></p>
 <p><%= @setting.ip_white_list %></p>
 <p><%= @setting.contact_email_address %></p>
+-->
 
 <div class="">
     <%= form_with(model: @setting, url: manage_setting_edit_path, data: { turbo: false }) do |f| %>
@@ -16,7 +18,7 @@
             <%= f.select :mode, [["ON", true], ["OFF", false]] %>
         </div>
         <div class="">
-            <%= f.label :api, "API制限" %>
+            <%= f.label :api, "API制限数" %>
         </div>
         <div class="">
             <%= f.text_field :api %>
@@ -40,7 +42,7 @@
             <%= f.text_field :contact_email_address %>
         </div>
         <div class="">
-            <%= f.submit "設定" %>
+            <%= f.submit "設定保存" %>
         </div>
     <% end %>
 </div>
