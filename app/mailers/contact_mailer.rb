@@ -1,7 +1,7 @@
 class ContactMailer < ApplicationMailer
   def send_mail(contact)
     @contact = contact
-    mail to: "sekiguchi.ryo@omura.co.jp", subject: '【お問い合わせ】' + @contact.subject, body: @contact.message
+    mail to: Setting.find(1).contact_email_address, subject: '【お問い合わせ】' + @contact.subject, body: @contact.message
   end
 
   def auto_reply_mail(contact)
