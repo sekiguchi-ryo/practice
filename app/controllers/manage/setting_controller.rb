@@ -19,7 +19,7 @@ class Manage::SettingController < Manage::ManageController
 
     def is_admin
         if current_user.admin != true
-            redirect_to manage_index_path
+            redirect_to manage_hoge_index_path
         end
     end
 end

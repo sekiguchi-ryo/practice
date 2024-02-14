@@ -5,9 +5,16 @@ Rails.application.routes.draw do
                                                     registrations: 'manage/registrations'}
 
   root "home#index"
-  get  "manage/index", to: "manage/hoge#index"
-  get  "manage/setting/index", to: 'manage/setting#index'
-  patch "manage/setting/edit", to: "manage/setting#edit"
+  namespace :manage do
+    resources :hoge, only: [:index]
+    # resources :setting
+    # get "index", to: "hoge#index"
+    get  "setting/index", to: 'setting#index'
+    patch "setting/edit", to: "setting#edit"
+  end
+  # get  "manage/index", to: "manage/hoge#index"
+  # get  "manage/setting/index", to: 'manage/setting#index'
+  # patch "manage/setting/edit", to: "manage/setting#edit"
 
   resources :contacts, only: [:new, :create] do
     collection do
