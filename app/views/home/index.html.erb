@@ -1,2 +1,16 @@
-<h1>Home</h1>
-<%= link_to "お問合せ", new_contact_path %>
+<div class="h-screen">
+  <header class="h-1/5">
+    <h1 class="text-center text-4xl m-4">Practice</h1>
+    <nav class="m-4">
+      <ul class="flex justify-center border-t border-b text-3xl">
+        <li class="mx-4"><%= link_to "home", root_path %></li>
+        <li class="mx-4"><%= link_to "contact", new_contact_path %></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="h-3/5">
+  </main>
+  <footer class="h-1/5 flex justify-center">
+    <p class="text-center text-gray-400 text-xs">©<%= Date.today.year%> ODI</p>
+  </footer>
+</div>
