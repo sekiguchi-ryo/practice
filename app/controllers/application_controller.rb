@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     before_action :render_maintenance_page_except_for_whilte_list_ips, if: :maintenance_mode?
     before_action :configure_permitted_parameters, if: :devise_controller?
+    before_action :set_search
 
     protected
 
@@ -33,5 +34,10 @@ class ApplicationController < ActionController::Base
             layout: false,
             status: :service_unavailable,
         )
+    end
+
+    def set_search
+        @q = User.ransack(params[:q])
+        @users = @q.result(distinct: true)
     end
 end

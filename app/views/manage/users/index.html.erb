@@ -1,3 +1,23 @@
-<div>
-  <%= render @users %>
+<div class="w-full">
+  <h1 class="text-lg bold mb-4">ユーザー管理</h1>
+  <div class="shadow overflow-hidden rounded border-b border-gray-200 mb-4">
+    <table class="min-w-full bg-white">
+      <thead class="bg-gray-800 text-white">
+        <tr>
+          <th class="text-center py-3 px-4 font-semibold text-sm">id</th>
+          <th class="text-center py-3 px-4 font-semibold text-sm">name</th>
+          <th class="text-center py-3 px-4 font-semibold text-sm">email</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700">
+        <%= render @users %>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <%= search_form_for @q, url: manage_users_path do |f| %>
+      <%= f.search_field :name_cont, placeholder: 'name', class:"bg-white py-3 px-4 rounded" %>
+      <%= f.submit '検索', class: 'bg-gray-800 text-white py-3 px-4 rounded cursor-pointer font-bold' %>
+    <% end %>
+  </div>
 </div>
