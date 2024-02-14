@@ -22,6 +22,11 @@ class Manage::UsersController < Manage::ManageController
     end
   end
 
+  def import
+    User.import(params[:file])
+    redirect_to manage_users_path
+  end
+
   private
 
     def user_params

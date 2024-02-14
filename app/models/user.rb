@@ -19,4 +19,16 @@ class User < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     [] # 検索可能な関連名を指定
   end
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      user = User.new
+      user.attributes = row.to_hash.slice(*updatable_attributes)
+      user.save
+    end
+  end
+
+  def self.updatable_attributes
+    ["name", "email", "password"]
+  end
 end
