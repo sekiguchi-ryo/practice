@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root "home#index"
   namespace :manage do
     resources :hoge, only: [:index]
+    resources :users
     # resources :setting
     # get "index", to: "hoge#index"
     get  "setting/index", to: 'setting#index'

@@ -8,6 +8,11 @@
             </li>
             <% if current_user.admin %>
               <li>
+                  <%= link_to "ユーザー管理", manage_users_path %>
+              </li>
+            <% end %>
+            <% if current_user.admin %>
+              <li>
                   <%= link_to "システム設定", manage_setting_index_path %>
               </li>
             <% end %>
