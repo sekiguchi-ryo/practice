@@ -1,9 +1,8 @@
 class Manage::UsersController < Manage::ManageController
 
   def index
-    # @users = User.all
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
+    @users = @q.result.order("id ASC").page(params[:page]).per(10)
   end
 
   def show
