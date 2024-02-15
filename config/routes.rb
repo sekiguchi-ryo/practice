@@ -11,13 +11,14 @@ Rails.application.routes.draw do
       collection { post :import }
     end
     # resources :setting
-    # get "index", to: "hoge#index"
     get  "setting/index", to: 'setting#index'
     patch "setting/edit", to: "setting#edit"
   end
-  # get  "manage/index", to: "manage/hoge#index"
-  # get  "manage/setting/index", to: 'manage/setting#index'
-  # patch "manage/setting/edit", to: "manage/setting#edit"
+
+  namespace :api do
+    resources :users, only: [:show]
+    post "login", to: "authentication#login"
+  end
 
   resources :contacts, only: [:new, :create] do
     collection do
