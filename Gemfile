@@ -83,3 +83,4 @@ gem "ransack"
 gem "kaminari"
 gem "roo"
 gem "jwt"
+gem 'closure_tree'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_13_035350) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_15_074357) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,20 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_13_035350) do
     t.string "method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "piyo_hierarchies", id: false, force: :cascade do |t|
+    t.integer "ancestor_id", null: false
+    t.integer "descendant_id", null: false
+    t.integer "generations", null: false
+    t.index ["ancestor_id", "descendant_id", "generations"], name: "piyo_anc_desc_idx", unique: true
+    t.index ["descendant_id"], name: "piyo_desc_idx"
+  end
+
+  create_table "piyos", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "parent_id"
   end
 
   create_table "posts", force: :cascade do |t|
