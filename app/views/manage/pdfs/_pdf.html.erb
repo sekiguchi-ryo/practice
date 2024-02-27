@@ -1,0 +1,11 @@
+<p><%= pdf.id %></p>
+<p>object</p>
+<object data=<%= pdf.pdf %> type="application/pdf"></object>
+<br>
+<p>embed</p>
+<embed src=<%= pdf.pdf %> type="application/pdf">
+<br>
+<p>iframe</p>
+<iframe src=<%= pdf.pdf %>></iframe>
+<p>link_to</p>
+<%= link_to "pdfを閲覧する" , "#{pdf.pdf}", {:target => "_blank"} %>
