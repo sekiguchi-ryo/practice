@@ -12,7 +12,7 @@ class Manage::PdfsController < Manage::ManageController
     else
       # 失敗
     end
-    render 'new'
+    redirect_to new_manage_pdf_path
   end
 
   private
