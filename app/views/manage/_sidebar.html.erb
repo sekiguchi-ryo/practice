@@ -4,7 +4,10 @@
         <%= link_to current_user.name, manage_hoge_index_path, class:"flex items-center ps-2.5 mb-5"%>
         <ul class="space-y-2 font-medium">
             <li>
-              <%= link_to "PDF", new_manage_pdf_path %>
+              <%= link_to "PDF Up", new_manage_pdf_path %>
+            </li>
+            <li>
+              <%= link_to "Image Up", new_manage_image_path %>
             </li>
             <li>
               <%= link_to "ユーザー情報変更", edit_user_registration_path %>

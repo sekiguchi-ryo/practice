@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get  "setting/index", to: 'setting#index'
     patch "setting/edit", to: "setting#edit"
     resources :pdfs
+    resources :images
   end
 
   namespace :api do
