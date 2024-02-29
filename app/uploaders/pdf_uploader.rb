@@ -80,6 +80,8 @@ class PdfUploader < CarrierWave::Uploader::Base
       # すぐ下にリンクを貼りましたのでそちらを見てください。
       minimagick! do |pdf|
         pdf
+          # .quality(0) # 画質を設定（0〜100の範囲で指定、100が最高品質）
+          # .density('100') # 解像度を設定（オプション、dpi）
           # `append`は`convert`コマンドに渡す引数を渡せます。
           # この二つのオプションを指定しないとものによっては背景が真っ黒になります。
           .append('-background', 'white')
