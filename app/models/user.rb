@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   # has_secure_password
   mount_uploader :avatar, AvatarUploader
+  has_many :messages
 
   def self.searchable_attributes
     %w[name]

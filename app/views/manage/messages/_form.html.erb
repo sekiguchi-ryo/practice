@@ -1,0 +1,7 @@
+<%= form_with(model: @message, url: manage_messages_path, data: { turbo: false }) do |f| %>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.rich_text_area :content %>
+    <%= f.submit "新規登録" %>
+  </div>
+<% end %>

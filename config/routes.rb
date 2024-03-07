@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     patch "setting/edit", to: "setting#edit"
     resources :pdfs
     resources :images
+    resources :messages
   end
 
   namespace :api do

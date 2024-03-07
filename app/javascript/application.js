@@ -12,3 +12,5 @@ $(async() => {
     await import("jquery-ui-dist")
     $("#hoge").draggable()
 })
+import "trix"
+import "@rails/actiontext"
