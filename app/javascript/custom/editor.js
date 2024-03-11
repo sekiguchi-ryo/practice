@@ -13,7 +13,6 @@ document.addEventListener('turbo:load', ()=>{
     return;
   }
   const editor = new EditorJS({
-      autofocus: true,
       holder: 'editorjs',
       tools: {
         header: Header,
@@ -25,15 +24,15 @@ document.addEventListener('turbo:load', ()=>{
         },
         raw: RawTool,
         image: SimpleImage,
-        image: {
-          class: ImageTool,
-          config: {
-            endpoints: {
-              byFile: 'http://localhost:8008/uploadFile', // Your backend file uploader endpoint
-              byUrl: 'http://localhost:8008/fetchUrl', // Your endpoint that provides uploading by Url
-            }
-          }
-        },
+        // image: {
+        //   class: ImageTool,
+        //   config: {
+        //     endpoints: {
+        //       byFile: 'http://localhost:8008/uploadFile', // Your backend file uploader endpoint
+        //       byUrl: 'http://localhost:8008/fetchUrl', // Your endpoint that provides uploading by Url
+        //     }
+        //   }
+        // },
         checklist: Checklist,
         list: List,
         embed: Embed,
@@ -41,7 +40,13 @@ document.addEventListener('turbo:load', ()=>{
       },
       onReady: () => {
         console.log('Editor.js is ready to work!')
-      }
+      },
+      onChange: (api, event) => {
+        console.log('Now I know that Editor\'s content changed!', event)
+      },
+      autofocus: true,
+      placeholder: 'Let`s write an awesome story!',
+      logLevel: 'VERBOSE',
   });
   
   const save = document.getElementById('save');
