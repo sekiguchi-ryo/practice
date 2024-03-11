@@ -14,3 +14,7 @@ $(async() => {
 })
 import "trix"
 import "@rails/actiontext"
+import "editorjs"
+const editor = new EditorJS({
+    autofocus: true
+});
