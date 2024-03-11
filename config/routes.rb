@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :pdfs
     resources :images
     resources :messages
+    resources :editorjs
   end
 
   namespace :api do
