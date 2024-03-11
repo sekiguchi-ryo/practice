@@ -1,4 +1,17 @@
+import "@editorjs/editorjs"
+import "@editorjs/header"
+import "@editorjs/link"
+import "@editorjs/raw"
+import "@editorjs/simple-image"
+import "@editorjs/image"
+import "@editorjs/checklist"
+import "@editorjs/list"
+import "@editorjs/embed"
+import "@editorjs/quote"
 document.addEventListener('turbo:load', ()=>{
+  if(document.getElementById("editorjs") == null) {
+    return;
+  }
   const editor = new EditorJS({
       autofocus: true,
       holder: 'editorjs',
