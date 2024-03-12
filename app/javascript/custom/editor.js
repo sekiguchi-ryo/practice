@@ -53,6 +53,7 @@ document.addEventListener('turbo:load', ()=>{
   save.addEventListener('click', () => {
     editor.save().then((outputData) => {
         console.log('Article data: ', outputData)
+        document.getElementById("editor_content").value = JSON.stringify(outputData);
     }).catch((error) => {
         console.log('Saving fialed: ', error)
     });

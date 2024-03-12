@@ -1,0 +1,11 @@
+<p>Editor.js New</p>
+<div class="p-4 bg-gray-400">
+  <div id="editorjs" class="bg-white p-4"></div>
+</div>
+
+<%= form_with(model: @editor, url: manage_editors_path, data: { turbo: false }) do |f| %>
+  <div class="field">
+    <%= f.hidden_field :content %>
+    <%= f.submit "保存", id: "save" %>
+  </div>
+<% end %>

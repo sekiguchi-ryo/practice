@@ -6,6 +6,7 @@ class User < ApplicationRecord
   # has_secure_password
   mount_uploader :avatar, AvatarUploader
   has_many :messages
+  has_many :editors
 
   def self.searchable_attributes
     %w[name]

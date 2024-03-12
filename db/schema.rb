@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_07_004654) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_12_004945) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_004654) do
     t.text "message", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "editors", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_editors_on_user_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -152,6 +160,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_004654) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "editors", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "posts", "users"
 end
