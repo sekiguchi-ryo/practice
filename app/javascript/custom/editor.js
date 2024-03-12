@@ -8,20 +8,17 @@ import "@editorjs/checklist"
 import "@editorjs/list"
 import "@editorjs/embed"
 import "@editorjs/quote"
-document.addEventListener('turbo:load', ()=>{
-  if(document.getElementById("editorjs") == null) {
-    return;
-  }
+if(document.getElementById("editorjs") != null) {
   var content = null;
-  var readonly = false;
-  var autofocus = true;
+  var isReadOnly = false;
+  var isAutofocus = true;
   const elem_content = document.getElementById('content');
   if(elem_content != null) {
     content = elem_content.value;
-    readonly = true;
-    autofocus = false;
+    isReadOnly = true;
+    isAutofocus = false;
   }
-
+    
   const editor = new EditorJS({
     holder: 'editorjs',
     tools: {
@@ -48,28 +45,29 @@ document.addEventListener('turbo:load', ()=>{
       embed: Embed,
       quote: Quote,
     },
-    onReady: () => {
-      console.log('Editor.js is ready to work!')
-    },
+    // onReady: () => {
+    //   console.log('Editor.js is ready to work!')
+    // },
     onChange: (api, event) => {
       console.log('Now I know that Editor\'s content changed!', event)
     },
-    placeholder: 'Let`s write an awesome story!',
-    logLevel: 'VERBOSE',
+    // placeholder: 'Let`s write an awesome story!',
+    // logLevel: 'VERBOSE',
     data: JSON.parse(content),
-    autofocus: autofocus,
-    readOnly: readonly
+    autofocus: isAutofocus,
+    readOnly: isReadOnly
   });
-
+    
   const save = document.getElementById('save');
   if(save != null) {
     save.addEventListener('click', () => {
       editor.save().then((outputData) => {
-          console.log('Article data: ', outputData)
-          document.getElementById('editor_content').value = JSON.stringify(outputData);
+          // console.log('Article data: ', outputData)
+          // document.getElementById('editor_content').value = JSON.stringify(outputData);
+          document.getElementById('output').innerHTML = JSON.stringify(outputData, null, 4);
       }).catch((error) => {
           console.log('Saving fialed: ', error)
       });
     });
   }
-});
+}
