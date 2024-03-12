@@ -45,6 +45,7 @@ if(document.getElementById("editorjs") != null) {
       embed: Embed,
       quote: Quote,
     },
+    // defaultBlock: 'header',
     // onReady: () => {
     //   console.log('Editor.js is ready to work!')
     // },
