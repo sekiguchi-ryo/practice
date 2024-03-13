@@ -64,8 +64,8 @@ if(document.getElementById("editorjs") != null) {
     save.addEventListener('click', () => {
       editor.save().then((outputData) => {
           // console.log('Article data: ', outputData)
-          // document.getElementById('editor_content').value = JSON.stringify(outputData);
-          document.getElementById('output').innerHTML = JSON.stringify(outputData, null, 4);
+          document.getElementById('editor_content').value = JSON.stringify(outputData);
+          // document.getElementById('output').innerHTML = JSON.stringify(outputData, null, 4);
       }).catch((error) => {
           console.log('Saving fialed: ', error)
       });
