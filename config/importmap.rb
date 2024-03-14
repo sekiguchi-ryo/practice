@@ -20,3 +20,5 @@ pin "@editorjs/checklist", to: "https://cdn.jsdelivr.net/npm/@editorjs/checklist
 pin "@editorjs/list", to: "https://cdn.jsdelivr.net/npm/@editorjs/list@1.9.0/dist/list.umd.js"
 pin "@editorjs/embed", to: "https://cdn.jsdelivr.net/npm/@editorjs/embed@2.7.0/dist/embed.umd.js"
 pin "@editorjs/quote", to: "https://cdn.jsdelivr.net/npm/@editorjs/quote@2.6.0/dist/quote.umd.min.js"
+pin "editorjs-html", to: "https://cdn.jsdelivr.net/npm/editorjs-html@3.4.0/build/edjsHTML.js"
+pin "editorjs-text-color-plugin", to: "https://cdn.jsdelivr.net/npm/editorjs-text-color-plugin@2.0.3/dist/bundle.js"
