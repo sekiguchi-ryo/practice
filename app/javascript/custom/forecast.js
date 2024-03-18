@@ -21,15 +21,15 @@ document.addEventListener("turbo:load", function() {
     tt.textContent = failedMessage;
   });
   // resourcesの数だけ取得
+  const tableElem = document.getElementById("forecast_table");
+  const tbodyElem = tableElem.createTBody();
   fetchAllResources(resources).then((results) => {
-    let tableElem = document.getElementById("forecast_table");
-    let tbodyElem = tableElem.createTBody();
     for(const result of results) {
-      let trElem = tbodyElem.insertRow();
-      let poElem = trElem.insertCell();
-      let rdElem = trElem.insertCell();
-      let taElem = trElem.insertCell();
-      let ttElem = trElem.insertCell();
+      const trElem = tbodyElem.insertRow();
+      const poElem = trElem.insertCell();
+      const rdElem = trElem.insertCell();
+      const taElem = trElem.insertCell();
+      const ttElem = trElem.insertCell();
       poElem.classList.add("border");
       rdElem.classList.add("border");
       taElem.classList.add("border");
@@ -39,6 +39,11 @@ document.addEventListener("turbo:load", function() {
       taElem.appendChild(document.createTextNode(result.targetArea));
       ttElem.appendChild(document.createTextNode(result.text));
     }
+  }).catch(() => {
+    const trElem = tbodyElem.insertRow();
+    const tdElem = trElem.insertCell();
+    tdElem.colSpan = "4";
+    tdElem.appendChild(document.createTextNode("取得できませんでした"));
   });
 });
 
