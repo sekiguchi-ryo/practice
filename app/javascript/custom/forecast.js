@@ -1,10 +1,11 @@
 const area_url = 'https://www.jma.go.jp/bosai/common/const/area.json';
-const overview_url = 'https://www.jma.go.jp/bosai/forecast/data/overview_forecast/350000.json';
-const resources = ["350000", "020000", "130000"];
+const overview_root_url = 'https://www.jma.go.jp/bosai/forecast/data/overview_forecast';
+const resources = ["350000", "020000"];
 
 document.addEventListener("turbo:load", function() {
   // 山口県だけ取得
-  const overview = fetchJSON(overview_url);
+  const overview_url_yamaguchi = `${overview_root_url}/350000.json`;
+  const overview = fetchJSON(overview_url_yamaguchi);
   const po = document.getElementById("publishingOffice");
   const rd = document.getElementById("reportDatetime");
   const ta = document.getElementById("targetArea");
@@ -46,6 +47,46 @@ document.addEventListener("turbo:load", function() {
     tdElem.colSpan = "4";
     tdElem.appendChild(document.createTextNode("取得できませんでした"));
   });
+  // エリアを選択して取得
+  const selectElem = document.getElementById("forecast_select");
+  const area = fetchJSON(area_url);
+  area.then(response => {
+    const offices = response.offices;
+    for (const office in offices) {
+      let optionElem = document.createElement("option");
+      optionElem.text = offices[office]["name"];
+      optionElem.value = office;
+      selectElem.appendChild(optionElem);
+    }
+  });
+  selectElem.addEventListener('change', function() {
+    const area_code = selectElem.value;
+    const po = document.getElementById("publishingOffice_area");
+    const rd = document.getElementById("reportDatetime_area");
+    const ta = document.getElementById("targetArea_area");
+    const tt = document.getElementById("text_area");
+    if(area_code != "000000") {
+      const overview_url =  `${overview_root_url}/${area_code}.json`;
+      const overview = fetchJSON(overview_url);
+      overview.then(response => {
+        po.textContent = response.publishingOffice;
+        rd.textContent = response.reportDatetime;
+        ta.textContent = response.targetArea;
+        tt.textContent = response.text;
+      }).catch(() => {
+        const failedMessage = "取得できませんでした";
+        po.textContent = failedMessage;
+        rd.textContent = failedMessage;
+        ta.textContent = failedMessage;
+        tt.textContent = failedMessage;
+      });
+    } else {
+        po.textContent = null;
+        rd.textContent = null;
+        ta.textContent = null;
+        tt.textContent = null;
+    }
+  });
 });
 
 async function fetchJSON(url) {
@@ -55,7 +96,7 @@ async function fetchJSON(url) {
 
 async function fetchAllResources(resources) {
   const promises = resources.map((resource) => {
-    const target_url = `https://www.jma.go.jp/bosai/forecast/data/overview_forecast/${resource}.json`
+    const target_url = `${overview_root_url}/${resource}.json`
     return fetchJSON(target_url);
   });
   const responses = await Promise.all(promises);
