@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :images
     resources :messages
     resources :editors
+    resources :forecasts, only: [:index]
   end
 
   namespace :api do
