@@ -1,7 +1,7 @@
 const area_url = 'https://www.jma.go.jp/bosai/common/const/area.json';
 const overview_root_url = 'https://www.jma.go.jp/bosai/forecast/data/overview_forecast';
 const yamaguchi_area_code = "350000";
-const resources = ["350000", "020000", "130000"];
+const resources = ["350000", "020000", "130000", "230000", "270000", "390000", "440000"];
 const failedMessage = "取得できませんでした";
 
 document.addEventListener("turbo:load", function() {
@@ -65,10 +65,11 @@ function get_selected_area_overview() {
   const area = fetchJSON(area_url);
   area.then(response => {
     const offices = response.offices;
-    for (const office in offices) {
+    const keys = Object.keys(offices).sort();
+    for (const key in keys) {
       let optionElem = document.createElement("option");
-      optionElem.text = offices[office]["name"];
-      optionElem.value = office;
+      optionElem.text = offices[keys[key]]["name"];
+      optionElem.value = keys[key];
       selectElem.appendChild(optionElem);
     }
   });
