@@ -1,10 +1,20 @@
 const area_url = 'https://www.jma.go.jp/bosai/common/const/area.json';
 const overview_root_url = 'https://www.jma.go.jp/bosai/forecast/data/overview_forecast';
-const resources = ["350000", "020000"];
+const yamaguchi_area_code = "350000";
+const resources = ["350000", "020000", "130000"];
+const failedMessage = "取得できませんでした";
 
 document.addEventListener("turbo:load", function() {
   // 山口県だけ取得
-  const overview_url_yamaguchi = `${overview_root_url}/350000.json`;
+  get_yamaguchi_overview();
+  // resourcesの数だけ取得
+  get_resources_overview();
+  // エリアを選択して取得
+  get_selected_area_overview();
+});
+
+function get_yamaguchi_overview() {
+  const overview_url_yamaguchi = `${overview_root_url}/${yamaguchi_area_code}.json`;
   const overview = fetchJSON(overview_url_yamaguchi);
   const po = document.getElementById("publishingOffice");
   const rd = document.getElementById("reportDatetime");
@@ -16,13 +26,14 @@ document.addEventListener("turbo:load", function() {
     ta.textContent = response.targetArea;
     tt.textContent = response.text;
   }).catch(() => {
-    const failedMessage = "取得できませんでした";
     po.textContent = failedMessage;
     rd.textContent = failedMessage;
     ta.textContent = failedMessage;
     tt.textContent = failedMessage;
   });
-  // resourcesの数だけ取得
+}
+
+function get_resources_overview() {
   const tableElem = document.getElementById("forecast_table");
   const tbodyElem = tableElem.createTBody();
   fetchAllResources(resources).then((results) => {
@@ -45,9 +56,11 @@ document.addEventListener("turbo:load", function() {
     const trElem = tbodyElem.insertRow();
     const tdElem = trElem.insertCell();
     tdElem.colSpan = "4";
-    tdElem.appendChild(document.createTextNode("取得できませんでした"));
+    tdElem.appendChild(document.createTextNode(failedMessage));
   });
-  // エリアを選択して取得
+}
+
+function get_selected_area_overview() {
   const selectElem = document.getElementById("forecast_select");
   const area = fetchJSON(area_url);
   area.then(response => {
@@ -74,7 +87,6 @@ document.addEventListener("turbo:load", function() {
         ta.textContent = response.targetArea;
         tt.textContent = response.text;
       }).catch(() => {
-        const failedMessage = "取得できませんでした";
         po.textContent = failedMessage;
         rd.textContent = failedMessage;
         ta.textContent = failedMessage;
@@ -87,7 +99,7 @@ document.addEventListener("turbo:load", function() {
         tt.textContent = null;
     }
   });
-});
+}
 
 async function fetchJSON(url) {
   const response = await fetch(url);
