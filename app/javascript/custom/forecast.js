@@ -1,5 +1,6 @@
 const area_url = 'https://www.jma.go.jp/bosai/common/const/area.json';
 const overview_url = 'https://www.jma.go.jp/bosai/forecast/data/overview_forecast/350000.json';
+const resources = ["350000", "020000", "130000"];
 
 document.addEventListener("turbo:load", function() {
   // 山口県だけ取得
@@ -52,16 +53,12 @@ async function fetchJSON(url) {
   return await response.json();
 }
 
-const resources = ["350000", "020000", "130000"];
-
 async function fetchAllResources(resources) {
   const promises = resources.map((resource) => {
     const target_url = `https://www.jma.go.jp/bosai/forecast/data/overview_forecast/${resource}.json`
     return fetchJSON(target_url);
   });
-
   const responses = await Promise.all(promises);
-
   return responses.map((response) => {
     return response;
   });
