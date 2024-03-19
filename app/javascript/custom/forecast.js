@@ -11,6 +11,10 @@ document.addEventListener("turbo:load", function() {
   get_resources_overview();
   // エリアを選択して取得
   get_selected_area_overview();
+  // 定期実行
+  setInterval(() => {
+    set_selected_area_data();
+  }, 10000);
 });
 
 function get_yamaguchi_overview() {
@@ -60,8 +64,31 @@ function get_resources_overview() {
   });
 }
 
+// function get_selected_area_overview() {
+//   const selectElem = document.getElementById("forecast_select");
+//   const area = fetchJSON(area_url);
+//   area.then(response => {
+//     const offices = response.offices;
+//     const keys = Object.keys(offices).sort();
+//     for (const key in keys) {
+//       let optionElem = document.createElement("option");
+//       optionElem.text = offices[keys[key]]["name"];
+//       optionElem.value = keys[key];
+//       selectElem.appendChild(optionElem);
+//     }
+//   });
+//   selectElem.addEventListener('change', function() {
+//     const area_code = selectElem.value;
+//     const po = document.getElementById("publishingOffice_area");
+//     const rd = document.getElementById("reportDatetime_area");
+//     const ta = document.getElementById("targetArea_area");
+//     const tt = document.getElementById("text_area");
+//     set_selected_area_data(area_code, null, po, rd, ta, tt);
+//   });
+// }
+
 function get_selected_area_overview() {
-  const selectElem = document.getElementById("forecast_select");
+  const selectElem = document.getElementById("forecast_select_rt");
   const area = fetchJSON(area_url);
   area.then(response => {
     const offices = response.offices;
@@ -74,32 +101,45 @@ function get_selected_area_overview() {
     }
   });
   selectElem.addEventListener('change', function() {
-    const area_code = selectElem.value;
-    const po = document.getElementById("publishingOffice_area");
-    const rd = document.getElementById("reportDatetime_area");
-    const ta = document.getElementById("targetArea_area");
-    const tt = document.getElementById("text_area");
-    if(area_code != "000000") {
-      const overview_url =  `${overview_root_url}/${area_code}.json`;
-      const overview = fetchJSON(overview_url);
-      overview.then(response => {
-        po.textContent = response.publishingOffice;
-        rd.textContent = response.reportDatetime;
-        ta.textContent = response.targetArea;
-        tt.textContent = response.text;
-      }).catch(() => {
-        po.textContent = failedMessage;
-        rd.textContent = failedMessage;
-        ta.textContent = failedMessage;
-        tt.textContent = failedMessage;
-      });
-    } else {
-        po.textContent = null;
-        rd.textContent = null;
-        ta.textContent = null;
-        tt.textContent = null;
-    }
+    set_selected_area_data();
   });
+}
+
+function set_selected_area_data() {
+  const selectElem = document.getElementById("forecast_select_rt");
+  const area_code = selectElem.value;
+  const gd = document.getElementById("getDatetime");
+  const po = document.getElementById("publishingOffice_area_rt");
+  const rd = document.getElementById("reportDatetime_area_rt");
+  const ta = document.getElementById("targetArea_area_rt");
+  const tt = document.getElementById("text_area_rt");
+  if(area_code != "000000") {
+    const overview_url =  `${overview_root_url}/${area_code}.json`;
+    const overview = fetchJSON(overview_url);
+    overview.then(response => {
+      if(gd != null) {
+        const now = new Date();
+        gd.textContent = now;
+      }
+      po.textContent = response.publishingOffice;
+      rd.textContent = response.reportDatetime;
+      ta.textContent = response.targetArea;
+      tt.textContent = response.text;
+    }).catch(() => {
+      if(gd != null) {
+        gd.textContent = failedMessage;
+      }
+      po.textContent = failedMessage;
+      rd.textContent = failedMessage;
+      ta.textContent = failedMessage;
+      tt.textContent = failedMessage;
+    });
+  } else {
+      po.textContent = null;
+      rd.textContent = null;
+      ta.textContent = null;
+      tt.textContent = null;
+  }
 }
 
 async function fetchJSON(url) {
