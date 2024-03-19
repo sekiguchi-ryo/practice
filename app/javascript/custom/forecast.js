@@ -152,8 +152,9 @@ async function fetchAllResources(resources) {
     const target_url = `${overview_root_url}/${resource}.json`
     return fetchJSON(target_url);
   });
-  const responses = await Promise.all(promises);
-  return responses.map((response) => {
-    return response;
-  });
+  // const responses = await Promise.all(promises);
+  // return responses.map((response) => {
+  //   return response;
+  // });
+  return await Promise.all(promises);
 }
